@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css" rel="stylesheet">
+
     <!-- Mis estilos-->
     <link rel="stylesheet" href="./css/style.css">
 
@@ -29,19 +32,18 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav col-12 d-flex">
+                            <!--
                             <li class="nav-item">
-                                <a class="nav-link cursor" aria-current="page">Categorías</a>
+                                <a class="nav-link cursor ocultar" id="id_juego_1">Adivinanzas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link cursor">Ofertas</a>
+                                <a class="nav-link cursor ocultar" id="id_juego_2">Preguntas y Respuestas</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link cursor">Novedades</a>
-                            </li>
-                            <li class="nav-item">
+                            <li class="nav-item ms-auto">
                                 <a class="nav-link cursor" id="id_link_registrate">Registrate</a>
                             </li>
+                            -->
                         </ul>
                     </div>
                 </div>
@@ -207,6 +209,10 @@
 
     <!-- script jQuery 3.7.0 -->
     <script src="./js/jquery-3.7.0.min.js"></script>
+
+
+    <!-- SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js"></script>
 
     <!-- script mi archivo js-->
     <script src="./js/main.js"></script>

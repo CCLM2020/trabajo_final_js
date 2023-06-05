@@ -237,10 +237,36 @@ $(document).ready(function () {
   //Cuando hacemos click en el boton guardarmos
   $('#id_btn_Registrar').click(function () {
     if (ComprobarDatos()) {
-      alert('todo ok');
+      localStorage.setItem("usuario", $('#id_txt_usuario').val());
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'El usuario fue registrado',
+        showConfirmButton: false,
+        timer: 1800,
+        customClass: {
+          icon: 'h6'
+        },
+        didOpen: function() {
+          setTimeout(function() {
+            $(location).attr('href', './index.html');
+          }, 2000);
+        }
+      });
     };
   })
 });
+
+
+if (window.location.href.indexOf('index.html') > -1) {
+  let usuario = localStorage.getItem('usuario')
+  if (usuario !== null) {
+    $('#id_link_registrate').html('<i class="fa-solid fa-user"></i> ' + usuario);
+    $('#id_juego_1')
+  }
+  
+}
+
 
 function cargarCiudades(id_provincia) {
   $.ajax({
