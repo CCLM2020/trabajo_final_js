@@ -258,11 +258,34 @@ $(document).ready(function () {
 });
 
 
+$('#id_link_cerrar').click(function () {
+  Swal.fire({
+    title: 'Salir',
+    html: '¿Desea cerrar sesion?',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, cerrar!',
+    cancelButtonText: "Cancelar",
+    reverseButtons: true,
+    buttonsStyling: false,
+    customClass: {
+      title: 'fs-4 text-danger',
+      confirmButton: 'btn btn-danger',
+      cancelButton: 'btn btn-outline-danger me-2',
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.removeItem("usuario");
+      $('#id_link_registrate').html('Registrate');
+      $('#id_juego_1, #id_juego_2, #id_link_cerrar').addClass('ocultar');
+    }
+  });
+});
+
 if (window.location.href.indexOf('index.html') > -1) {
   let usuario = localStorage.getItem('usuario')
   if (usuario !== null) {
     $('#id_link_registrate').html('<i class="fa-solid fa-user"></i> ' + usuario);
-    $('#id_juego_1')
+    $('#id_juego_1, #id_juego_2, #id_link_cerrar').removeClass('ocultar');
   }
   
 }
@@ -274,7 +297,7 @@ function cargarCiudades(id_provincia) {
     method: "GET",
     dataType: "json",
     success: function(data) {
-      console.log(data);
+      //console.log(data);
       
       var select = $("#id_cbx_Ciudad");
 
