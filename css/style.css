@@ -46,3 +46,9 @@ img {
   transform: translateY(-50%);
   cursor: pointer;
 }
+
+.preguntas {
+  font-size: 1.2rem;
+  color: darkgreen;
+  font-weight: 500;
+}

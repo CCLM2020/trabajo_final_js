@@ -260,9 +260,7 @@ $(document).ready(function () {
   
   //Cuando hacemos click en el boton inicar adivinanzas
   $('#btn_Iniciar_Ad').click(function () {
-    //$(location).attr('href', './juego_1.html');
-    //alert('jugamos')
-    //let adivinar = adivinanzas.slice();
+
 
     let cantidad = 0;
     let juegoAdivina = [];
@@ -276,7 +274,7 @@ $(document).ready(function () {
       }
     
     }
-
+    //var valorSeleccionado = $('input[name="opciones"]:checked').val();
     console.log(juegoAdivina)
   });
 
