@@ -40,10 +40,6 @@ $(document).ready(function () {
       var select = $("#id_cbx_Pais");
       var option = '<option value="">Selecciona un país</option><option value="Argentina">Argentina</option><option value="Brasil">Brasil</option><option value="Canadá">Canadá</option><option value="Chile">Chile</option><option value="Colombia">Colombia</option><option value="Costa Rica">Costa Rica</option><option value="Cuba">Cuba</option><option value="República Dominicana">República Dominicana</option><option value="Ecuador">Ecuador</option><option value="Guatemala">Guatemala</option><option value="Honduras">Honduras</option><option value="México">México</option><option value="Nicaragua">Nicaragua</option><option value="Panamá">Panamá</option><option value="Perú">Perú</option><option value="Estados Unidos">Estados Unidos</option><option value="Uruguay">Uruguay</option><option value="Venezuela">Venezuela</option>';
       select.append(option);
-      /*
-      
-*/
-      //alert("Error al obtener los datos de la API");
     }
   });
 
@@ -254,41 +250,54 @@ $(document).ready(function () {
         }
       });
     };
-  })
-});
-
-
-$('#id_link_cerrar').click(function () {
-  Swal.fire({
-    title: 'Salir',
-    html: '¿Desea cerrar sesion?',
-    showCancelButton: true,
-    confirmButtonText: 'Sí, cerrar!',
-    cancelButtonText: "Cancelar",
-    reverseButtons: true,
-    buttonsStyling: false,
-    customClass: {
-      title: 'fs-4 text-danger',
-      confirmButton: 'btn btn-danger',
-      cancelButton: 'btn btn-outline-danger me-2',
-    }
-  }).then((result) => {
-    if (result.isConfirmed) {
-      localStorage.removeItem("usuario");
-      $('#id_link_registrate').html('Registrate');
-      $('#id_juego_1, #id_juego_2, #id_link_cerrar').addClass('ocultar');
-    }
   });
-});
 
-if (window.location.href.indexOf('index.html') > -1) {
-  let usuario = localStorage.getItem('usuario')
-  if (usuario !== null) {
-    $('#id_link_registrate').html('<i class="fa-solid fa-user"></i> ' + usuario);
-    $('#id_juego_1, #id_juego_2, #id_link_cerrar').removeClass('ocultar');
+
+  //Cuando hacemos click en el boton guardarmos
+  $('#id_juego_1').click(function () {
+    $(location).attr('href', './juego_1.html');
+  });
+
+
+  $('#id_link_cerrar').click(function () {
+    Swal.fire({
+      title: 'Salir',
+      html: '¿Desea cerrar sesion?',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, cerrar!',
+      cancelButtonText: "Cancelar",
+      reverseButtons: true,
+      buttonsStyling: false,
+      customClass: {
+        title: 'fs-4 text-danger',
+        confirmButton: 'btn btn-danger',
+        cancelButton: 'btn btn-outline-danger me-2',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("usuario");
+        $('#id_link_registrate').html('Registrate');
+        $('#id_juego_1, #id_juego_2, #id_link_cerrar').addClass('ocultar');
+      }
+    });
+  });
+
+  if (window.location.href.indexOf('index.html') > -1) {
+    let usuario = localStorage.getItem('usuario')
+    if (usuario !== null) {
+      $('#id_link_registrate').html('<i class="fa-solid fa-user"></i> ' + usuario);
+      $('#id_juego_1, #id_juego_2, #id_link_cerrar').removeClass('ocultar');
+    }
   }
-  
-}
+
+  if (window.location.href.indexOf('juego_1.html') > -1) {
+    let usuario = localStorage.getItem('usuario')
+    if (usuario !== null) {
+      $('#id_link_registrate_juego_1').html('<i class="fa-solid fa-user"></i> ' + usuario);
+      //$('#id_juego_1, #id_juego_2, #id_link_cerrar').removeClass('ocultar');
+    }
+  }
+});
 
 
 function cargarCiudades(id_provincia) {
