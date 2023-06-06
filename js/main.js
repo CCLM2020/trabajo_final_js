@@ -253,11 +253,32 @@ $(document).ready(function () {
   });
 
 
-  //Cuando hacemos click en el boton guardarmos
+  //Cuando hacemos click en el menu adivinanzas
   $('#id_juego_1').click(function () {
     $(location).attr('href', './juego_1.html');
   });
+  
+  //Cuando hacemos click en el boton inicar adivinanzas
+  $('#btn_Iniciar_Ad').click(function () {
+    //$(location).attr('href', './juego_1.html');
+    //alert('jugamos')
+    //let adivinar = adivinanzas.slice();
 
+    let cantidad = 0;
+    let juegoAdivina = [];
+    let indices = [];
+    while (cantidad < 3) {
+      let indice = Math.floor(Math.random() * adivinanzas.length);
+      if (indices.indexOf(indice) === -1) {
+        indices.push(indice);
+        juegoAdivina.push(adivinanzas[indice]);
+        cantidad++;
+      }
+    
+    }
+
+    console.log(juegoAdivina)
+  });
 
   $('#id_link_cerrar').click(function () {
     Swal.fire({
@@ -297,6 +318,8 @@ $(document).ready(function () {
       //$('#id_juego_1, #id_juego_2, #id_link_cerrar').removeClass('ocultar');
     }
   }
+
+
 });
 
 
@@ -405,3 +428,545 @@ function checkEdad(inputEdad, idSpan) {
     return true;
   }
 }
+
+let adivinanzas = [
+  {
+      pregunta: 'Blanco por dentro, verde por fuera, si quieres que te lo diga, espera.',
+      respuestas: [
+          { respuesta: "El coco", "correcta": 1 },
+          { respuesta: "La manzana", "correcta": 0 },
+          { respuesta: "El kiwi", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Dos en la calle van sobrando, dos en la casa están faltando.",
+      respuestas: [
+          { respuesta: "Los pies", "correcta": 0 },
+          { respuesta: "Los zapatos", "correcta": 0 },
+          { respuesta: "Los pantalones", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Si me nombra no existo, ¿quién soy?",
+      respuestas: [
+          { respuesta: "La nada", "correcta": 1 },
+          { respuesta: "La sombra", "correcta": 0 },
+          { respuesta: "El vacío", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Entra al agua y no se moja. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El pez", "correcta": 0 },
+          { respuesta: "El sol", "correcta": 1 },
+          { respuesta: "El barco", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Aunque soy negro como el carbón, soy más valioso que el oro.",
+      respuestas: [
+          { respuesta: "La oscuridad", "correcta": 0 },
+          { respuesta: "El petróleo", "correcta": 0 },
+          { respuesta: "El diamante", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Sube por el monte sin ser planta, baja al valle sin ser agua.",
+      respuestas: [
+          { respuesta: "La nube", "correcta": 0 },
+          { respuesta: "La niebla", "correcta": 1 },
+          { respuesta: "El río", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Tiene dientes y no puede masticar, tiene cabeza y no puede pensar.",
+      respuestas: [
+          { respuesta: "Un peine", "correcta": 1 },
+          { respuesta: "Un cepillo de dientes", "correcta": 0 },
+          { respuesta: "Un lápiz", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "En el cielo me encuentro, pero no soy estrella. En el nido me hago, pero no soy pájaro.",
+      respuestas: [
+          { respuesta: "El avión", "correcta": 0 },
+          { respuesta: "La luna", "correcta": 0 },
+          { respuesta: "La nube", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Dura toda la vida y se acaba en un momento.",
+      respuestas: [
+          { respuesta: "El amor", "correcta": 0 },
+          { respuesta: "El tiempo", "correcta": 0 },
+          { respuesta: "El suspiro", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Si me buscas, no me encuentras. Si me encuentras, no me conoces. ¿Qué soy?",
+      respuestas: [
+          { respuesta: "La felicidad", "correcta": 0 },
+          { respuesta: "El misterio", "correcta": 0 },
+          { respuesta: "El silencio", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Siempre va para adelante, pero nunca da un paso. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El tiempo", "correcta": 1 },
+          { respuesta: "La velocidad", "correcta": 0 },
+          { respuesta: "El camino", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Es algo duro y firme, pero cuando se lo calienta se vuelve líquido. ¿Qué es?",
+      respuestas: [
+          { respuesta: "La mantequilla", "correcta": 0 },
+          { respuesta: "El hielo", "correcta": 0 },
+          { respuesta: "El hierro", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Siempre sube y nunca baja, si lo tocas te quemas. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El fuego", "correcta": 1 },
+          { respuesta: "El sol", "correcta": 0 },
+          { respuesta: "La lava", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Tiene un ojo y no puede ver, tiene agua y no puede beber. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El pez", "correcta": 0 },
+          { respuesta: "El mapa", "correcta": 1 },
+          { respuesta: "El reloj", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Conmigo se escribe, pero no se lee. ¿Qué soy?",
+      respuestas: [
+          { respuesta: "La tinta", "correcta": 1 },
+          { respuesta: "El papel", "correcta": 0 },
+          { respuesta: "La pluma", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Es más poderoso que Dios. Es más maligno que el diablo. Los pobres lo tienen. Los ricos lo necesitan. Si lo comes, morirás. ¿Qué es?",
+      respuestas: [
+          { respuesta: "Nada", "correcta": 1 },
+          { respuesta: "El amor", "correcta": 0 },
+          { respuesta: "El dinero", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Es de día cuando llego y de noche me voy. ¿Qué soy?",
+      respuestas: [
+          { respuesta: "La luz", "correcta": 0 },
+          { respuesta: "La sombra", "correcta": 1 },
+          { respuesta: "El viento", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "De día se enciende y de noche se apaga. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El sol", "correcta": 0 },
+          { respuesta: "La luna", "correcta": 1 },
+          { respuesta: "Las estrellas", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Tiene forma de aguja y no cose, tiene forma de llave y no abre.",
+      respuestas: [
+          { respuesta: "La aguja magnética", "correcta": 0 },
+          { respuesta: "La llave de paso", "correcta": 0 },
+          { respuesta: "La jeringa", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Tiene dientes y no puede morder, tiene cabeza y no puede pensar.",
+      respuestas: [
+          { respuesta: "Un peine", "correcta": 1 },
+          { respuesta: "Un cepillo de dientes", "correcta": 0 },
+          { respuesta: "Un lápiz", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "En el día no se ve, en la noche se enciende. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El fuego", "correcta": 0 },
+          { respuesta: "La estrella", "correcta": 1 },
+          { respuesta: "El sol", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Tiene corazón y no está vivo, tiene una corona y no es rey.",
+      respuestas: [
+          { respuesta: "La piña", "correcta": 1 },
+          { respuesta: "El melón", "correcta": 0 },
+          { respuesta: "La sandía", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Vuela sin alas, llora sin ojos. ¿Qué es?",
+      respuestas: [
+          { respuesta: "La nube", "correcta": 0 },
+          { respuesta: "El viento", "correcta": 0 },
+          { respuesta: "El suspiro", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Siempre sube y nunca baja, siempre entra y nunca sale. ¿Qué es?",
+      respuestas: [
+          { respuesta: "La edad", "correcta": 1 },
+          { respuesta: "El agua", "correcta": 0 },
+          { respuesta: "El fuego", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Tiene ojos y no puede ver, tiene agua y no puede beber. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El pez", "correcta": 0 },
+          { respuesta: "El mapa", "correcta": 1 },
+          { respuesta: "El reloj", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Es redonda como una luna, pero nunca está en el cielo.",
+      respuestas: [
+          { respuesta: "La moneda", "correcta": 1 },
+          { respuesta: "La pelota", "correcta": 0 },
+          { respuesta: "La pizza", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Tiene escamas y no es pez, tiene corona y no es rey.",
+      respuestas: [
+          { respuesta: "La piña", "correcta": 1 },
+          { respuesta: "El melón", "correcta": 0 },
+          { respuesta: "La sandía", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "En el cielo me encuentro, pero no soy estrella. En el nido me hago, pero no soy pájaro.",
+      respuestas: [
+          { respuesta: "El avión", "correcta": 0 },
+          { respuesta: "La luna", "correcta": 0 },
+          { respuesta: "La nube", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Tiene dientes y no puede masticar, tiene cabeza y no puede pensar. ¿Qué es?",
+      respuestas: [
+          { respuesta: "Un peine", "correcta": 1 },
+          { respuesta: "Un cepillo de dientes", "correcta": 0 },
+          { respuesta: "Un lápiz", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "En el día se enciende y de noche se apaga. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El sol", "correcta": 0 },
+          { respuesta: "La luna", "correcta": 1 },
+          { respuesta: "Las estrellas", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Si me buscas, no me encuentras. Si me encuentras, no me conoces. ¿Qué soy?",
+      respuestas: [
+          { respuesta: "La felicidad", "correcta": 0 },
+          { respuesta: "El misterio", "correcta": 0 },
+          { respuesta: "El silencio", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Sube por el monte sin ser planta, baja al valle sin ser agua.",
+      respuestas: [
+          { respuesta: "La nube", "correcta": 0 },
+          { respuesta: "La niebla", "correcta": 1 },
+          { respuesta: "El río", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Aunque soy negro como el carbón, soy más valioso que el oro.",
+      respuestas: [
+          { respuesta: "La oscuridad", "correcta": 0 },
+          { respuesta: "El petróleo", "correcta": 0 },
+          { respuesta: "El diamante", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "Entra al agua y no se moja. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El pez", "correcta": 0 },
+          { respuesta: "El sol", "correcta": 1 },
+          { respuesta: "El barco", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Tiene ojos y no puede ver, tiene agua y no puede beber. ¿Qué es?",
+      respuestas: [
+          { respuesta: "El pez", "correcta": 0 },
+          { respuesta: "El mapa", "correcta": 1 },
+          { respuesta: "El reloj", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "Conmigo se escribe, pero no se lee. ¿Qué soy?",
+      respuestas: [
+          { respuesta: "La tinta", "correcta": 1 },
+          { respuesta: "El papel", "correcta": 0 },
+          { respuesta: "La pluma", "correcta": 0 }
+      ]
+  }
+];
+
+let preguntasRespuestas = [
+  {
+      pregunta: "¿Cuál es la capital de Francia?",
+      respuestas: [
+          { respuesta: "Madrid", "correcta": 0 },
+          { respuesta: "París", "correcta": 1 },
+          { respuesta: "Roma", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Quién pintó La Mona Lisa?",
+      respuestas: [
+          { respuesta: "Pablo Picasso", "correcta": 0 },
+          { respuesta: "Leonardo da Vinci", "correcta": 1 },
+          { respuesta: "Vincent van Gogh", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el río más largo del mundo?",
+      respuestas: [
+          { respuesta: "Amazonas", "correcta": 1 },
+          { respuesta: "Nilo", "correcta": 0 },
+          { respuesta: "Misisipi", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el océano más grande del mundo?",
+      respuestas: [
+          { respuesta: "Océano Índico", "correcta": 0 },
+          { respuesta: "Océano Atlántico", "correcta": 0 },
+          { respuesta: "Océano Pacífico", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "¿En qué año comenzó la Segunda Guerra Mundial?",
+      respuestas: [
+          { respuesta: "1939", "correcta": 1 },
+          { respuesta: "1945", "correcta": 0 },
+          { respuesta: "1914", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es la montaña más alta del mundo?",
+      respuestas: [
+          { respuesta: "Monte Everest", "correcta": 1 },
+          { respuesta: "Monte Kilimanjaro", "correcta": 0 },
+          { respuesta: "Monte Aconcagua", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el metal más preciado?",
+      respuestas: [
+          { respuesta: "Platino", "correcta": 0 },
+          { respuesta: "Oro", "correcta": 1 },
+          { respuesta: "Plata", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el país más grande del mundo en términos de superficie?",
+      respuestas: [
+          { respuesta: "China", "correcta": 0 },
+          { respuesta: "Estados Unidos", "correcta": 0 },
+          { respuesta: "Rusia", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es la lengua más hablada del mundo?",
+      respuestas: [
+          { respuesta: "Español", "correcta": 0 },
+          { respuesta: "Inglés", "correcta": 0 },
+          { respuesta: "Chino mandarín", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "¿En qué continente se encuentra Egipto?",
+      respuestas: [
+          { respuesta: "África", "correcta": 1 },
+          { respuesta: "Asia", "correcta": 0 },
+          { respuesta: "Europa", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el instrumento musical de viento más antiguo?",
+      respuestas: [
+          { respuesta: "Trompeta", "correcta": 0 },
+          { respuesta: "Flauta", "correcta": 1 },
+          { respuesta: "Saxofón", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es la moneda oficial de Japón?",
+      respuestas: [
+          { respuesta: "Yen", "correcta": 1 },
+          { respuesta: "Euro", "correcta": 0 },
+          { respuesta: "Dólar", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es la ciudad italiana famosa por su canal?",
+      respuestas: [
+          { respuesta: "Roma", "correcta": 0 },
+          { respuesta: "Venecia", "correcta": 1 },
+          { respuesta: "Florencia", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el país de origen de la pizza?",
+      respuestas: [
+          { respuesta: "Italia", "correcta": 1 },
+          { respuesta: "Francia", "correcta": 0 },
+          { respuesta: "Estados Unidos", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es la fórmula química del agua?",
+      respuestas: [
+          { respuesta: "H2O", "correcta": 1 },
+          { respuesta: "CO2", "correcta": 0 },
+          { respuesta: "NaCl", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el símbolo químico del oro?",
+      respuestas: [
+          { respuesta: "Ag", "correcta": 0 },
+          { respuesta: "Au", "correcta": 1 },
+          { respuesta: "Fe", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el planeta más cercano al sol?",
+      respuestas: [
+          { respuesta: "Venus", "correcta": 0 },
+          { respuesta: "Mercurio", "correcta": 1 },
+          { respuesta: "Marte", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el proceso de conversión de un gas en líquido?",
+      respuestas: [
+          { respuesta: "Evaporación", "correcta": 0 },
+          { respuesta: "Condensación", "correcta": 1 },
+          { respuesta: "Solidificación", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el autor de la obra 'Don Quijote de la Mancha'?",
+      respuestas: [
+          { respuesta: "Miguel de Cervantes", "correcta": 1 },
+          { respuesta: "Gabriel García Márquez", "correcta": 0 },
+          { respuesta: "William Shakespeare", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el océano más pequeño del mundo?",
+      respuestas: [
+          { respuesta: "Océano Índico", "correcta": 0 },
+          { respuesta: "Océano Atlántico", "correcta": 0 },
+          { respuesta: "Océano Ártico", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el país con la mayor población del mundo?",
+      respuestas: [
+          { respuesta: "Estados Unidos", "correcta": 0 },
+          { respuesta: "India", "correcta": 0 },
+          { respuesta: "China", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es la ciudad conocida como 'La Ciudad Eterna'?",
+      respuestas: [
+          { respuesta: "Atenas", "correcta": 0 },
+          { respuesta: "Roma", "correcta": 1 },
+          { respuesta: "París", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el río más largo de América del Norte?",
+      respuestas: [
+          { respuesta: "Río Misisipi", "correcta": 0 },
+          { respuesta: "Río Colorado", "correcta": 0 },
+          { respuesta: "Río Misisipi-Misuri", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el continente más poblado del mundo?",
+      respuestas: [
+          { respuesta: "África", "correcta": 0 },
+          { respuesta: "Asia", "correcta": 1 },
+          { respuesta: "Europa", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el país con la forma de gobierno de monarquía parlamentaria más antigua?",
+      respuestas: [
+          { respuesta: "Reino Unido", "correcta": 1 },
+          { respuesta: "Japón", "correcta": 0 },
+          { respuesta: "Canadá", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el desierto más grande del mundo?",
+      respuestas: [
+          { respuesta: "Desierto del Sahara", "correcta": 1 },
+          { respuesta: "Desierto de Gobi", "correcta": 0 },
+          { respuesta: "Desierto de Atacama", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el país con la mayor cantidad de islas?",
+      respuestas: [
+          { respuesta: "Filipinas", "correcta": 0 },
+          { respuesta: "Indonesia", "correcta": 1 },
+          { respuesta: "Maldivas", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es la montaña más alta de América del Norte?",
+      respuestas: [
+          { respuesta: "Monte Rainier", "correcta": 0 },
+          { respuesta: "Monte McKinley", "correcta": 0 },
+          { respuesta: "Monte Denali", "correcta": 1 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el país con la mayor cantidad de premios Nobel?",
+      respuestas: [
+          { respuesta: "Estados Unidos", "correcta": 1 },
+          { respuesta: "Reino Unido", "correcta": 0 },
+          { respuesta: "Alemania", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el compuesto químico principal en el aire?",
+      respuestas: [
+          { respuesta: "Dióxido de carbono", "correcta": 0 },
+          { respuesta: "Nitrógeno", "correcta": 1 },
+          { respuesta: "Oxígeno", "correcta": 0 }
+      ]
+  },
+  {
+      pregunta: "¿Cuál es el autor de la obra 'Romeo y Julieta'?",
+      respuestas: [
+          { respuesta: "William Shakespeare", "correcta": 1 },
+          { respuesta: "Miguel de Cervantes", "correcta": 0 },
+          { respuesta: "Gabriel García Márquez", "correcta": 0 }
+      ]
+  }
+];
