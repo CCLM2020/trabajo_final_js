@@ -45,30 +45,38 @@
                 </div>
             </nav>
             <div class="col-12 text-light py-5">
-                <div class="h2 text-center pb-3">¡Bienvenidos al juego de Adivinanzas!</div>
-                <div>Es un emocionante desafío donde tendrás que usar tu ingenio y habilidades de deducción para
-                    resolver enigmas. Prepárate para sumergirte en un mundo lleno de acertijos divertidos y desafiantes.
+                <div class="h2 text-center pb-3">¡Bienvenidos al juego de Preguntas y Respuestas!</div>
+                <div>En este emocionante juego, los participantes tendrán la oportunidad de poner a prueba sus conocimientos sobre una amplia variedad de temas relacionados con la cultura, incluyendo arte, literatura, música, cine, historia, ciencia, geografía y mucho más.
                 </div>
             </div>
             <div class="col-12 mb-5 d-flex justify-content-end column-gap-2">
                 
-                <button type="button" class="btn btn-secondary px-5" id="btn_Iniciar_Ad">Iniciar</button>
+                <button type="button" class="btn btn-secondary px-5" id="btn_Iniciar_Preg">Iniciar</button>
             </div>
-            <div class="col-8 bg-body-secondary ps-3 p-2 ocultar" id="col_preguntas">
+            <div class="col-8 bg-body-secondary ps-3 p-2 pt-4 ocultar" id="col_preg_resp">
                 
             </div>
-            <div class="col-4 bg-secondary p-3 ocultar" id="col_puntaje">
+            <div class="col-4 bg-secondary p-3 ocultar" id="col_puntaje_preg">
                 <div class="row h-100 m-0 p-0 d-flex align-items-start">
                     <div class="col-12 text-center">
-                        <i class="fa-solid fa-trophy premio" id="id_icon_3"></i>
-                        <i class="fa-solid fa-award premio" id="id_icon_2"></i>
-                        <i class="fa-solid fa-medal premio" id="id_icon_1"></i>
+                        <i class="fa-solid fa-trophy premioGanador ocultar" id="id_icon_copa"></i>
+                        
+                        <div id="id_estrellas">
+                            <!--
+                            <i class="fa-solid fa-star premio_star"></i>
+                            -->
+                        </div>
                     </div>
-                    <div class="col-12 align-self-center text-center h4 text-light" id="col_mensaje">
+                    <div class="col-12 align-self-center text-center h4 text-light" id="col_resultado_respuesta">
+                        
+                    </div>
+                    <div class="col-12 align-self-center text-center h4 text-light" id="col_mensaje_preg">
                         
                     </div>
                     <div class="col-12 align-self-end d-flex justify-content-center">
-                        <button type="button" class="btn btn-light px-4 text-center" id="btn_Fin_Ad" disabled>Finalizar</button>
+                        <button type="button" class="btn btn-light px-4 text-center" id="btn_Aceptar_Sig" disabled>Aceptar</button>
+                        <button type="button" class="btn btn-light px-4 text-center ocultar" id="btn_Siguiente" disabled>Siguiente</button>
+                        <button type="button" class="btn btn-light px-4 text-center ocultar" id="btn_Fin_Preg" disabled>Finalizar</button>
                     </div>
                 </div>
             </div>

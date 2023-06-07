@@ -258,6 +258,11 @@ $(document).ready(function () {
     $(location).attr('href', './juego_1.html');
   });
   
+ //Cuando hacemos click en el menu preguntas y respuestas
+ $('#id_juego_2').click(function () {
+  $(location).attr('href', './juego_2.html');
+});
+
   //Cuando hacemos click en el boton inicar adivinanzas
   $('#btn_Iniciar_Ad').click(function () {
     let cantidad = 0;
@@ -296,6 +301,56 @@ $(document).ready(function () {
     $('#col_preguntas').removeClass('ocultar');
     $('#col_puntaje').removeClass('ocultar');
   });
+
+  let juegoPregResp = [];
+  let i_preg = 0;
+  //Cuando hacemos click en el boton inicar preguntas y respuestas
+  $('#btn_Iniciar_Preg').click(function () {
+    let cantidad = 0;
+    juegoPregResp = [];
+    let indices = [];
+    i_preg = 0;
+    while (cantidad < 5) {
+      let indice = Math.floor(Math.random() * preguntasRespuestas.length);
+      if (indices.indexOf(indice) === -1) {
+        indices.push(indice);
+        juegoPregResp.push(preguntasRespuestas[indice]);
+        cantidad++;
+      }
+    
+    }
+
+    cargarDiv();
+    
+    $('#btn_Iniciar_Preg').prop('disabled', true);
+    $('#id_icon_copa').addClass('ocultar');
+    $('#col_resultado_respuesta').empty();
+    $('#col_mensaje_preg').empty();
+    $('input[type="radio"]').prop('disabled', false);
+    $('#col_preg_resp').removeClass('ocultar');
+    $('#col_puntaje_preg').removeClass('ocultar');
+  });
+
+  function cargarDiv() {
+    let preguntas_Respuestas = "";
+
+    preguntas_Respuestas += '<div class="preguntas pb-4">' + juegoPregResp[i_preg].pregunta + '</div>';
+    preguntas_Respuestas += '<div class="ps-3 pb-4">';
+
+    for (var x = 0; x < juegoPregResp[i_preg].respuestas.length; x++) {
+      preguntas_Respuestas += '<div class="form-check pb-2">' +
+                                '<input class="form-check-input" type="radio" name="p_'+ i_preg +'" id="p_'+ x +'_'+ i_preg +'" value="' + juegoPregResp[i_preg].respuestas[x].correcta + '">' +
+                                '<label class="form-check-label" for="p_'+ x +'_'+ i_preg +'">' +
+                                juegoPregResp[i_preg].respuestas[x].respuesta +
+                                '</label>' +
+                              '</div>';
+    }
+
+    preguntas_Respuestas += '</div>';
+    $('#col_preg_resp').html(preguntas_Respuestas);
+
+  }
+
 
   $(document).on('change', 'input[name="p_0"], input[name="p_1"], input[name="p_2"]', function() {
     if ($('input[name="p_0"]').is(':checked') && $('input[name="p_1"]').is(':checked') && $('input[name="p_2"]').is(':checked')) {
@@ -375,10 +430,15 @@ $(document).ready(function () {
     let usuario = localStorage.getItem('usuario')
     if (usuario !== null) {
       $('#id_link_registrate_juego_1').html('<i class="fa-solid fa-user"></i> ' + usuario);
-      //$('#id_juego_1, #id_juego_2, #id_link_cerrar').removeClass('ocultar');
     }
   }
 
+  if (window.location.href.indexOf('juego_2.html') > -1) {
+    let usuario = localStorage.getItem('usuario')
+    if (usuario !== null) {
+      $('#id_link_registrate_juego_1').html('<i class="fa-solid fa-user"></i> ' + usuario);
+    }
+  }
 
 });
 
