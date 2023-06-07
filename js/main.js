@@ -260,8 +260,6 @@ $(document).ready(function () {
   
   //Cuando hacemos click en el boton inicar adivinanzas
   $('#btn_Iniciar_Ad').click(function () {
-
-
     let cantidad = 0;
     let juegoAdivina = [];
     let indices = [];
@@ -274,8 +272,41 @@ $(document).ready(function () {
       }
     
     }
-    //var valorSeleccionado = $('input[name="opciones"]:checked').val();
-    console.log(juegoAdivina)
+
+    let codigo_preguntas = "";
+    for (var i = 0; i < juegoAdivina.length; i++) {
+      codigo_preguntas += '<div class="preguntas pb-2">' + juegoAdivina[i].pregunta + '</div>';
+      codigo_preguntas += '<div class="ps-3 pb-4">';
+      for (var x = 0; x < juegoAdivina[i].respuestas.length; x++) {
+        codigo_preguntas += '<div class="form-check">' +
+                              '<input class="form-check-input" type="radio" name="p_'+ i +'" id="p_'+ x +'_'+ i +'" value="' + juegoAdivina[i].respuestas[x].correcta + '">' +
+                              '<label class="form-check-label" for="p_'+ x +'_'+ i +'">' +
+                              juegoAdivina[i].respuestas[x].respuesta +
+                              '</label>' +
+                            '</div>';
+      }
+
+      codigo_preguntas += '</div>';
+    }
+  
+    $('#col_preguntas').html(codigo_preguntas);
+    $('#col_preguntas').removeClass('ocultar');
+    $('#col_puntaje').removeClass('ocultar');
+  });
+
+  $(document).on('change', 'input[name="p_0"], input[name="p_1"], input[name="p_2"]', function() {
+    if ($('input[name="p_0"]').is(':checked') && $('input[name="p_1"]').is(':checked') && $('input[name="p_2"]').is(':checked')) {
+      $('#btn_Fin_Ad').removeAttr('disabled');
+    }
+  });
+
+  //Cuando hacemos click en el boton terminar adivinanzas
+  $('#btn_Fin_Ad').on('click', function () {
+    let valorSeleccionado = $('input[name="p_0"]:checked').val();
+
+    console.log($('input[name="p_0"]:checked').val())
+    console.log($('input[name="p_1"]:checked').val())
+    console.log($('input[name="p_2"]:checked').val())
   });
 
   $('#id_link_cerrar').click(function () {
