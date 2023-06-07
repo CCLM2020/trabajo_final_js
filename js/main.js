@@ -288,8 +288,11 @@ $(document).ready(function () {
 
       codigo_preguntas += '</div>';
     }
-  
+    $('#btn_Iniciar_Ad').prop('disabled', true);
+    $('#id_icon_3, #id_icon_2, #id_icon_1').removeClass('ocultar premioGanador').addClass('premio');
     $('#col_preguntas').html(codigo_preguntas);
+    $('#col_mensaje').empty();
+    $('input[type="radio"]').prop('disabled', false);
     $('#col_preguntas').removeClass('ocultar');
     $('#col_puntaje').removeClass('ocultar');
   });
@@ -302,11 +305,39 @@ $(document).ready(function () {
 
   //Cuando hacemos click en el boton terminar adivinanzas
   $('#btn_Fin_Ad').on('click', function () {
-    let valorSeleccionado = $('input[name="p_0"]:checked').val();
+    let resp_1 = parseInt($('input[name="p_0"]:checked').val(), 10) || 0;
+    let resp_2 = parseInt($('input[name="p_1"]:checked').val(), 10) || 0;
+    let resp_3 = parseInt($('input[name="p_2"]:checked').val(), 10) || 0;
 
-    console.log($('input[name="p_0"]:checked').val())
-    console.log($('input[name="p_1"]:checked').val())
-    console.log($('input[name="p_2"]:checked').val())
+    let sumaAciertos = resp_1 + resp_2 + resp_3;
+
+    switch (sumaAciertos) {
+      case 0:
+        $('#col_mensaje').html('Lo siento, inténtalo de nuevo.');
+        break;
+      case 1:
+        $('#col_mensaje').html('¡Has acertado una adivinanza!');
+        $('#id_icon_1').removeClass('premio').addClass('premioGanador');
+        $('#id_icon_3, #id_icon_2').addClass('ocultar');
+        break;
+      case 2:
+        $('#col_mensaje').html('¡Has acertado dos adivinanzas! ¡Muy bien!');
+        $('#id_icon_2').removeClass('premio').addClass('premioGanador');
+        $('#id_icon_3, #id_icon_1').addClass('ocultar');
+        break;
+      case 3:
+        $('#col_mensaje').html('¡Has acertado todas las adivinanzas! ¡Felicitaciones!');
+        $('#id_icon_3').removeClass('premio').addClass('premioGanador');
+        $('#id_icon_1, #id_icon_2').addClass('ocultar');
+        break;
+    }
+    $('input[name="p_0"][value="1"]').addClass('correcto');
+    $('input[name="p_1"][value="1"]').addClass('correcto');
+    $('input[name="p_2"][value="1"]').addClass('correcto');
+    $('input[type="radio"]').prop('disabled', true);
+    $('#btn_Iniciar_Ad').text('Reiniciar');
+    $('#btn_Iniciar_Ad').removeAttr('disabled');
+    $('#btn_Fin_Ad').prop('disabled', true);
   });
 
   $('#id_link_cerrar').click(function () {
