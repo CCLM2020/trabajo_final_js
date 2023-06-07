@@ -69,7 +69,7 @@ $(document).ready(function () {
           
     },
     error: function() {
-      alert("Error al obtener los datos de la API");
+      //alert("Error al obtener los datos de la API");
     }
   });
 
@@ -339,11 +339,19 @@ $(document).ready(function () {
 
     for (var x = 0; x < juegoPregResp[i_preg].respuestas.length; x++) {
       preguntas_Respuestas += '<div class="form-check pb-2">' +
-                                '<input class="form-check-input" type="radio" name="p_'+ i_preg +'" id="p_'+ x +'_'+ i_preg +'" value="' + juegoPregResp[i_preg].respuestas[x].correcta + '">' +
-                                '<label class="form-check-label" for="p_'+ x +'_'+ i_preg +'">' +
+                                '<input class="form-check-input" type="radio" name="radio_pR" id="radio_pR'+ x +'" value="' + juegoPregResp[i_preg].respuestas[x].correcta + '">' +
+                                '<label class="form-check-label" for="radio_pR'+ x +'">' +
                                 juegoPregResp[i_preg].respuestas[x].respuesta +
                                 '</label>' +
                               '</div>';
+      /*
+      preguntas_Respuestas += '<div class="form-check pb-2">' +
+                                '<input class="form-check-input" type="radio" name="pR_'+ i_preg +'" id="pR_'+ x +'_'+ i_preg +'" value="' + juegoPregResp[i_preg].respuestas[x].correcta + '">' +
+                                '<label class="form-check-label" for="pR_'+ x +'_'+ i_preg +'">' +
+                                juegoPregResp[i_preg].respuestas[x].respuesta +
+                                '</label>' +
+                              '</div>';
+      */
     }
 
     preguntas_Respuestas += '</div>';
@@ -351,12 +359,21 @@ $(document).ready(function () {
 
   }
 
-
+  //cuando hago click en algun radio de adivinanzas me fijo si en tolas  adivinanzas ya hice click y activo boton fin
   $(document).on('change', 'input[name="p_0"], input[name="p_1"], input[name="p_2"]', function() {
     if ($('input[name="p_0"]').is(':checked') && $('input[name="p_1"]').is(':checked') && $('input[name="p_2"]').is(':checked')) {
       $('#btn_Fin_Ad').removeAttr('disabled');
     }
   });
+
+
+  $(document).on('change', 'input[name="radio_pR"]', function() {
+    if ($('input[name="radio_pR"]').is(':checked')) {
+
+      $('#btn_Aceptar_Sig').removeAttr('disabled');
+    }
+  });
+
 
   //Cuando hacemos click en el boton terminar adivinanzas
   $('#btn_Fin_Ad').on('click', function () {
@@ -393,6 +410,11 @@ $(document).ready(function () {
     $('#btn_Iniciar_Ad').text('Reiniciar');
     $('#btn_Iniciar_Ad').removeAttr('disabled');
     $('#btn_Fin_Ad').prop('disabled', true);
+  });
+
+  //cuando hacemos click en el boton aceptar de preguntas y resouestas
+  $('#btn_Aceptar_Sig').on('click', function () {
+    alert('acepto')
   });
 
   $('#id_link_cerrar').click(function () {
@@ -473,7 +495,7 @@ function cargarCiudades(id_provincia) {
           
     },
     error: function() {
-      alert("Error al obtener los datos de la API");
+      //alert("Error al obtener los datos de la API");
     }
   });
 };
