@@ -374,7 +374,6 @@ $(document).ready(function () {
     }
   });
 
-
   //Cuando hacemos click en el boton terminar adivinanzas
   $('#btn_Fin_Ad').on('click', function () {
     let resp_1 = parseInt($('input[name="p_0"]:checked').val(), 10) || 0;
@@ -414,7 +413,39 @@ $(document).ready(function () {
 
   //cuando hacemos click en el boton aceptar de preguntas y resouestas
   $('#btn_Aceptar_Sig').on('click', function () {
-    alert('acepto')
+    let resp_1 = parseInt($('input[name="radio_pR"]:checked').val(), 10) || 0;
+    //let resp_2 = parseInt($('input[name="p_1"]:checked').val(), 10) || 0;
+    //let resp_3 = parseInt($('input[name="p_2"]:checked').val(), 10) || 0;
+
+    //let sumaAciertos = resp_1 + resp_2 + resp_3;
+
+    switch (resp_1) {
+      case 0:
+        $('#col_resultado_respuesta').html('Lo siento, inténtalo de nuevo.');
+        break;
+      case 1:
+        $('#col_resultado_respuesta').html('¡Has acertado una adivinanza!');
+        //$('#id_icon_1').removeClass('premio').addClass('premioGanador');
+        //$('#id_icon_3, #id_icon_2').addClass('ocultar');
+        break;
+      case 2:
+        $('#col_resultado_respuesta').html('¡Has acertado dos adivinanzas! ¡Muy bien!');
+        //$('#id_icon_2').removeClass('premio').addClass('premioGanador');
+        //$('#id_icon_3, #id_icon_1').addClass('ocultar');
+        break;
+      case 3:
+        $('#col_resultado_respuesta').html('¡Has acertado todas las adivinanzas! ¡Felicitaciones!');
+        //$('#id_icon_3').removeClass('premio').addClass('premioGanador');
+        //$('#id_icon_1, #id_icon_2').addClass('ocultar');
+        break;
+    }
+    $('input[name="p_0"][value="1"]').addClass('correcto');
+    //$('input[name="p_1"][value="1"]').addClass('correcto');
+    //$('input[name="p_2"][value="1"]').addClass('correcto');
+    $('input[type="radio"]').prop('disabled', true);
+    //$('#btn_Iniciar_Ad').text('Reiniciar');
+    //$('#btn_Iniciar_Ad').removeAttr('disabled');
+    //$('#btn_Fin_Ad').prop('disabled', true);
   });
 
   $('#id_link_cerrar').click(function () {
