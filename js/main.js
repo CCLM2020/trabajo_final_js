@@ -275,9 +275,7 @@ $(document).ready(function () {
         juegoAdivina.push(adivinanzas[indice]);
         cantidad++;
       }
-    
     }
-
     let codigo_preguntas = "";
     for (var i = 0; i < juegoAdivina.length; i++) {
       codigo_preguntas += '<div class="preguntas pb-2">' + juegoAdivina[i].pregunta + '</div>';
@@ -290,7 +288,6 @@ $(document).ready(function () {
                               '</label>' +
                             '</div>';
       }
-
       codigo_preguntas += '</div>';
     }
     $('#btn_Iniciar_Ad').prop('disabled', true);
@@ -310,7 +307,7 @@ $(document).ready(function () {
     juegoPregResp = [];
     let indices = [];
     i_preg = 0;
-    while (cantidad < 5) {
+    while (cantidad < 10) {
       let indice = Math.floor(Math.random() * preguntasRespuestas.length);
       if (indices.indexOf(indice) === -1) {
         indices.push(indice);
@@ -323,9 +320,10 @@ $(document).ready(function () {
     cargarDiv();
     
     $('#btn_Iniciar_Preg').prop('disabled', true);
-    $('#id_icon_copa').addClass('ocultar');
+    $('#id_icon_8').addClass('ocultar');
+    $('#id_icon_9').addClass('ocultar');
+    $('#id_icon_10').addClass('ocultar');
     $('#col_resultado_respuesta').empty();
-    $('#col_mensaje_preg').empty();
     $('input[type="radio"]').prop('disabled', false);
     $('#col_preg_resp').removeClass('ocultar');
     $('#col_puntaje_preg').removeClass('ocultar');
@@ -344,19 +342,11 @@ $(document).ready(function () {
                                 juegoPregResp[i_preg].respuestas[x].respuesta +
                                 '</label>' +
                               '</div>';
-      /*
-      preguntas_Respuestas += '<div class="form-check pb-2">' +
-                                '<input class="form-check-input" type="radio" name="pR_'+ i_preg +'" id="pR_'+ x +'_'+ i_preg +'" value="' + juegoPregResp[i_preg].respuestas[x].correcta + '">' +
-                                '<label class="form-check-label" for="pR_'+ x +'_'+ i_preg +'">' +
-                                juegoPregResp[i_preg].respuestas[x].respuesta +
-                                '</label>' +
-                              '</div>';
-      */
     }
 
     preguntas_Respuestas += '</div>';
     $('#col_preg_resp').html(preguntas_Respuestas);
-
+    $('#col_mensaje_preg').html((i_preg+1) + ' de ' + (juegoPregResp.length));
   }
 
   //cuando hago click en algun radio de adivinanzas me fijo si en tolas  adivinanzas ya hice click y activo boton fin
@@ -414,39 +404,94 @@ $(document).ready(function () {
   //cuando hacemos click en el boton aceptar de preguntas y resouestas
   $('#btn_Aceptar_Sig').on('click', function () {
     let resp_1 = parseInt($('input[name="radio_pR"]:checked').val(), 10) || 0;
-    //let resp_2 = parseInt($('input[name="p_1"]:checked').val(), 10) || 0;
-    //let resp_3 = parseInt($('input[name="p_2"]:checked').val(), 10) || 0;
 
-    //let sumaAciertos = resp_1 + resp_2 + resp_3;
-
-    switch (resp_1) {
-      case 0:
-        $('#col_resultado_respuesta').html('Lo siento, inténtalo de nuevo.');
-        break;
-      case 1:
-        $('#col_resultado_respuesta').html('¡Has acertado una adivinanza!');
-        //$('#id_icon_1').removeClass('premio').addClass('premioGanador');
-        //$('#id_icon_3, #id_icon_2').addClass('ocultar');
-        break;
-      case 2:
-        $('#col_resultado_respuesta').html('¡Has acertado dos adivinanzas! ¡Muy bien!');
-        //$('#id_icon_2').removeClass('premio').addClass('premioGanador');
-        //$('#id_icon_3, #id_icon_1').addClass('ocultar');
-        break;
-      case 3:
-        $('#col_resultado_respuesta').html('¡Has acertado todas las adivinanzas! ¡Felicitaciones!');
-        //$('#id_icon_3').removeClass('premio').addClass('premioGanador');
-        //$('#id_icon_1, #id_icon_2').addClass('ocultar');
-        break;
+    let id_respuesta = $('input[name="radio_pR"][value="1"]').attr('id');
+    let respuesta_correcta = $('label[for="' + id_respuesta + '"]').text();
+    if (resp_1 === 1) {
+      $('#col_resultado_respuesta').html('<div class="text-warning">¡Has acertado, era: <br>' + respuesta_correcta + '.</div><div class="pt-2 fs-5 text-warning">Presiona siguiente para continuar</div>');
+      $('#id_estrellas_si').append('<i class="fa-solid fa-star premio_star"></i>');
+    } else {
+      $('#col_resultado_respuesta').html('<div class="incorrecto">Lo siento, la respuesta correcta era: <br>' + respuesta_correcta + '.</div><div class="pt-2 fs-5 incorrecto">Presiona siguiente para continuar</div>');
+      $('#id_estrellas_no').append('<i class="fa-solid fa-star premio_star_no"></i>');
     }
-    $('input[name="p_0"][value="1"]').addClass('correcto');
-    //$('input[name="p_1"][value="1"]').addClass('correcto');
-    //$('input[name="p_2"][value="1"]').addClass('correcto');
+
+    $('input[name="radio_pR"][value="1"]').addClass('correcto');
     $('input[type="radio"]').prop('disabled', true);
-    //$('#btn_Iniciar_Ad').text('Reiniciar');
-    //$('#btn_Iniciar_Ad').removeAttr('disabled');
-    //$('#btn_Fin_Ad').prop('disabled', true);
+
+    $('#btn_Siguiente').removeAttr('disabled').removeClass('ocultar');
+    $('#btn_Aceptar_Sig').prop('disabled', true).addClass('ocultar');
   });
+
+  //cuando hacemos click en el boton aceptar de preguntas y resouestas
+  $('#btn_Siguiente').on('click', function () {
+    $('#btn_Siguiente').prop('disabled', true).addClass('ocultar');
+    if (i_preg < (juegoPregResp.length-1)) { //si el indice es menor al total del array sigo cargando preguntas
+      i_preg++;
+      cargarDiv();
+      $('#btn_Aceptar_Sig').removeAttr('disabled').removeClass('ocultar');
+    } else {// si fue la ultima hago puntuacion
+      let cantidadCorrectas = $('#id_estrellas_si svg.premio_star').length;
+      //let cantidadIncorrectas = $('#id_estrellas_si premio_star_no').length;
+
+      
+      $('#id_estrellas_si').empty();
+      $('#id_estrellas_no').empty();
+      $('#col_resultado_respuesta').empty();
+      $('#col_mensaje_preg').empty();
+
+
+      switch (cantidadCorrectas) {
+        case 0:
+          $('#col_resultado_respuesta').html('<div class="text-warning">0 correctas de 10.</div>');
+          $('#id_icon_0').removeClass('ocultar');
+          break;
+        case 1:
+          $('#col_resultado_respuesta').html('<div class="text-warning">1 correctas de 10.</div>');
+          $('#id_icon_1').removeClass('ocultar');
+          break;
+        case 2:
+          $('#col_resultado_respuesta').html('<div class="text-warning">2 correctas de 10.</div>');
+          $('#id_icon_2').removeClass('ocultar');
+          break;
+        case 3:
+          $('#col_resultado_respuesta').html('<div class="text-warning">3 correctas de 10.</div>');
+          $('#id_icon_3').removeClass('ocultar');
+          break;
+        case 4:
+          $('#col_resultado_respuesta').html('<div class="text-warning">5 correctas de 10.</div>');
+          $('#id_icon_4').removeClass('ocultar');
+          break;
+        case 5:
+          $('#col_resultado_respuesta').html('<div class="text-warning">5 correctas de 10.</div>');
+          $('#id_icon_5').removeClass('ocultar');
+          break;
+        case 6:
+          $('#col_resultado_respuesta').html('<div class="text-warning">6 correctas de 10.</div>');
+          $('#id_icon_6').removeClass('ocultar');
+          break;
+        case 7:
+          $('#col_resultado_respuesta').html('<div class="text-warning">7 correctas de 10.</div>');
+          $('#id_icon_7').removeClass('ocultar');
+          break;
+        case 8:
+          $('#col_resultado_respuesta').html('<div class="text-warning">Bien! 8 correctas de 10.</div>');
+          $('#id_icon_8').removeClass('ocultar');
+          break;
+        case 9:
+          $('#col_resultado_respuesta').html('<div class="text-warning">Muy bien!! 9 correctas de 10.</div>');
+          $('#id_icon_9').removeClass('ocultar');
+          break;
+        case 10:
+          $('#col_resultado_respuesta').html('<div class="text-warning">Felicitaciones!!! Las 10 fueron correctas.</div>');
+          $('#id_icon_10').removeClass('ocultar');
+          break;
+      }
+
+      $('#btn_Aceptar_Sig').prop('disabled', true).addClass('ocultar');
+      $('#btn_Fin_Preg').removeAttr('disabled').removeClass('ocultar');
+    }
+  });
+
 
   $('#id_link_cerrar').click(function () {
     Swal.fire({

@@ -58,6 +58,16 @@ img {
   font-size: 9.5rem;
 }
 
+.premioBien{
+  color: rgb(44, 122, 41);
+  font-size: 9.5rem;
+}
+
+.premioMal{
+  color: rgb(105, 31, 31);
+  font-size: 9.5rem;
+}
+
 .premio{
   color: dimgray;
   font-size: 2.5rem;
@@ -67,6 +77,16 @@ img {
   color: goldenrod;
   font-size: 1.4rem;
 }
+
+.premio_star_no{
+  color: rgb(117, 2, 2);
+  font-size: 1.4rem;
+}
+
+.incorrecto {
+  color: rgb(160, 2, 2);
+}
+
 .correcto{
   background-color: rgb(128, 255, 0) !important;
   border: 2px solid rgb(92, 184, 0) !important;
