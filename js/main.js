@@ -1,10 +1,12 @@
 //comentario desde GitHub
 $(document).ready(function () {
   
+  //cuando hago click me lleva a pagina de inicio
   $('#id_link_inicio').click(function(){
     $(location).attr('href', './index.html');
   });
 
+  //cuando hago click me lleva a pagina de registrar usuario
   $('#id_link_registrate').click(function(){
     $(location).attr('href', './registro.html');
   });
@@ -29,9 +31,7 @@ $(document).ready(function () {
       select.append('<option value=""></option>');
 
       for (var i = 0; i < data.length; i++) {
-        //console.log();    
         var option = '<option value="' + data[i].name.common + '">' + data[i].name.common + '</option>';
-            
         select.append(option);
       };
           
@@ -69,14 +69,18 @@ $(document).ready(function () {
           
     },
     error: function() {
-      //alert("Error al obtener los datos de la API");
+      console.log("Error al obtener los datos de la API");
     }
   });
 
+  //cuando hago click en el select provincia se cargan las ciudades
   $("#id_cbx_Provincia").change(function () {
     cargarCiudades($(this).val());
   });
 
+  //cuando hago click en el select pais y si argentina
+  //cargo los otros select
+  //sino cargo input comunes para agregar manualmente los datos
   $("#id_cbx_Pais").change(function () {
     if ($(this).val() == "Argentina") {
       $('#id_txt_Provincia').addClass('ocultar');
@@ -258,10 +262,10 @@ $(document).ready(function () {
     $(location).attr('href', './juego_1.html');
   });
   
- //Cuando hacemos click en el menu preguntas y respuestas
- $('#id_juego_2').click(function () {
-  $(location).attr('href', './juego_2.html');
-});
+  //Cuando hacemos click en el menu preguntas y respuestas
+  $('#id_juego_2').click(function () {
+    $(location).attr('href', './juego_2.html');
+  });
 
   //Cuando hacemos click en el boton inicar adivinanzas
   $('#btn_Iniciar_Ad').click(function () {
@@ -320,10 +324,17 @@ $(document).ready(function () {
     cargarDiv();
     
     $('#btn_Iniciar_Preg').prop('disabled', true);
-    $('i[id^="icon_"]').addClass('ocultar');
-    //$('#id_icon_8').addClass('ocultar');
-    //$('#id_icon_9').addClass('ocultar');
-    //$('#id_icon_10').addClass('ocultar');
+    $('#id_icon_0').addClass('ocultar');
+    $('#id_icon_1').addClass('ocultar');
+    $('#id_icon_2').addClass('ocultar');
+    $('#id_icon_3').addClass('ocultar');
+    $('#id_icon_4').addClass('ocultar');
+    $('#id_icon_5').addClass('ocultar');
+    $('#id_icon_6').addClass('ocultar');
+    $('#id_icon_7').addClass('ocultar');
+    $('#id_icon_8').addClass('ocultar');
+    $('#id_icon_9').addClass('ocultar');
+    $('#id_icon_10').addClass('ocultar');
     $('#col_resultado_respuesta').empty();
     $('input[type="radio"]').prop('disabled', false);
     $('#col_preg_resp').removeClass('ocultar');
@@ -357,10 +368,9 @@ $(document).ready(function () {
     }
   });
 
-
+  //cuando hago click en algun radio de preguntas y respuestas activo boton aceptar
   $(document).on('change', 'input[name="radio_pR"]', function() {
     if ($('input[name="radio_pR"]').is(':checked')) {
-
       $('#btn_Aceptar_Sig').removeAttr('disabled');
     }
   });
@@ -429,17 +439,13 @@ $(document).ready(function () {
     if (i_preg < (juegoPregResp.length-1)) { //si el indice es menor al total del array sigo cargando preguntas
       i_preg++;
       cargarDiv();
-      $('#btn_Aceptar_Sig').removeAttr('disabled').removeClass('ocultar');
+      $('#btn_Aceptar_Sig').removeClass('ocultar');
     } else {// si fue la ultima hago puntuacion
       let cantidadCorrectas = $('#id_estrellas_si svg.premio_star').length;
-      //let cantidadIncorrectas = $('#id_estrellas_si premio_star_no').length;
-
-      
       $('#id_estrellas_si').empty();
       $('#id_estrellas_no').empty();
       $('#col_resultado_respuesta').empty();
       $('#col_mensaje_preg').empty();
-
 
       switch (cantidadCorrectas) {
         case 0:
@@ -487,13 +493,26 @@ $(document).ready(function () {
           $('#id_icon_10').removeClass('ocultar');
           break;
       }
-
       $('#btn_Aceptar_Sig').prop('disabled', true).addClass('ocultar');
       $('#btn_Fin_Preg').removeAttr('disabled').removeClass('ocultar');
     }
   });
 
+ 
+  //Cuando hacemos click en el boton terminar adivinanzas
+  $('#btn_Fin_Preg').on('click', function () {
+    $('#btn_Aceptar_Sig').removeClass('ocultar');
 
+    $('#col_preg_resp').addClass('ocultar');
+    $('#col_puntaje_preg').addClass('ocultar');
+
+    $('#btn_Iniciar_Preg').text('Reiniciar');
+    $('#btn_Iniciar_Preg').removeAttr('disabled');
+    $('#btn_Fin_Preg').prop('disabled', true);
+    $('#btn_Fin_Preg').addClass('ocultar');
+  });
+
+  //cierro sesion al hacer click
   $('#id_link_cerrar').click(function () {
     Swal.fire({
       title: 'Salir',
@@ -517,6 +536,7 @@ $(document).ready(function () {
     });
   });
 
+  //si estoy en la pagina inicio y hay usuario registrado lo muestro en el menu
   if (window.location.href.indexOf('index.html') > -1) {
     let usuario = localStorage.getItem('usuario')
     if (usuario !== null) {
@@ -525,6 +545,7 @@ $(document).ready(function () {
     }
   }
 
+  //si estoy en la pagina adivinanzas y hay usuario registrado lo muestro en el menu
   if (window.location.href.indexOf('juego_1.html') > -1) {
     let usuario = localStorage.getItem('usuario')
     if (usuario !== null) {
@@ -532,6 +553,7 @@ $(document).ready(function () {
     }
   }
 
+  //si estoy en la pagina preguntas y respuestas y hay usuario registrado lo muestro en el menu
   if (window.location.href.indexOf('juego_2.html') > -1) {
     let usuario = localStorage.getItem('usuario')
     if (usuario !== null) {
@@ -548,7 +570,6 @@ function cargarCiudades(id_provincia) {
     method: "GET",
     dataType: "json",
     success: function(data) {
-      //console.log(data);
       
       var select = $("#id_cbx_Ciudad");
 
@@ -572,7 +593,7 @@ function cargarCiudades(id_provincia) {
           
     },
     error: function() {
-      //alert("Error al obtener los datos de la API");
+      console.log("Error al obtener los datos de la API");
     }
   });
 };
