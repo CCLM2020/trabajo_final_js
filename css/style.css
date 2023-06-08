@@ -58,6 +58,26 @@ img {
   font-size: 9.5rem;
 }
 
+.iconHTLM{
+  color: rgb(248, 120, 0);
+  font-size: 9.5rem;
+}
+
+.iconCSS{
+  color: rgb(0, 190, 248);
+  font-size: 9.5rem;
+}
+
+.iconJS{
+  color: rgb(248, 232, 0);
+  font-size: 9.5rem;
+}
+
+.iconBS{
+  color: rgb(12, 8, 255);
+  font-size: 9.5rem;
+}
+
 .premioBien{
   color: rgb(44, 122, 41);
   font-size: 9.5rem;

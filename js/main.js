@@ -532,6 +532,7 @@ $(document).ready(function () {
         localStorage.removeItem("usuario");
         $('#id_link_registrate').html('Registrate');
         $('#id_juego_1, #id_juego_2, #id_link_cerrar').addClass('ocultar');
+        $(location).attr('href', './index.html');
       }
     });
   });
