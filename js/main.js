@@ -320,9 +320,10 @@ $(document).ready(function () {
     cargarDiv();
     
     $('#btn_Iniciar_Preg').prop('disabled', true);
-    $('#id_icon_8').addClass('ocultar');
-    $('#id_icon_9').addClass('ocultar');
-    $('#id_icon_10').addClass('ocultar');
+    $('i[id^="icon_"]').addClass('ocultar');
+    //$('#id_icon_8').addClass('ocultar');
+    //$('#id_icon_9').addClass('ocultar');
+    //$('#id_icon_10').addClass('ocultar');
     $('#col_resultado_respuesta').empty();
     $('input[type="radio"]').prop('disabled', false);
     $('#col_preg_resp').removeClass('ocultar');
