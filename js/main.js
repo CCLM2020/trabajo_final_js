@@ -436,6 +436,7 @@ $(document).ready(function () {
   //cuando hacemos click en el boton aceptar de preguntas y resouestas
   $('#btn_Siguiente').on('click', function () {
     $('#btn_Siguiente').prop('disabled', true).addClass('ocultar');
+    $('#col_resultado_respuesta').empty();
     if (i_preg < (juegoPregResp.length-1)) { //si el indice es menor al total del array sigo cargando preguntas
       i_preg++;
       cargarDiv();
@@ -444,7 +445,6 @@ $(document).ready(function () {
       let cantidadCorrectas = $('#id_estrellas_si svg.premio_star').length;
       $('#id_estrellas_si').empty();
       $('#id_estrellas_no').empty();
-      $('#col_resultado_respuesta').empty();
       $('#col_mensaje_preg').empty();
 
       switch (cantidadCorrectas) {
